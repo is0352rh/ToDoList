@@ -42,35 +42,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 完了フラグをTrueにした日付
     var CompleteFlagTrueDateList2 = [String]()
     
-    // Top画面を開いた回数を記録
-    //var OpenAppCounter : Int = 0
-
-    
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-
-    }
-    
-   /*
-    //遷移後，戻ってきた時にも実行
-    override func viewWillAppear(_ animated: Bool) {
-        // 画面が表示される前に実行したい処理を記述する
-        // 例えば、データの更新や、ビューの表示設定を行う
-    }
-    */
-    
-    //起動時１回目だけ実行
+    //起動時１回目だけ即実行される関数
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-      
-        
-        // Top画面の表示をカウント
-        //OpenAppCounter = UserDefaults.standard.integer(forKey: "OpenAppCounter")
-        //OpenAppCounter = OpenAppCounter + 1
-        //UserDefaults.standard.set(OpenAppCounter, forKey: "OpenAppCounter")
-        
         
         // データ読み込み
         if let storedTodoList = userDefaults.array(forKey: "todoList") as? [String] {
@@ -112,15 +87,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             CompleteFlagTrueDateList2.append(contentsOf: storedCompleteFlagTrueDateList2)
         }
         
-        //戻るボタンの非表示設定
-        //https://www.web-dev-qa-db-ja.com/ja/ios/swiftナビゲーションアイテムの戻るボタンを非表示にする方法/1050505720/
-        //self.navigationItem.leftBarButtonItems = []
-        //self.navigationItem.hidesBackButton = true
     }
     
     // +ボタンをタップしたときの動作
     @IBAction func addBtnAction(_ sender: Any) {
-        //todoの件数＋１
+        //todoの件数= num + 1
         num = todoList.count
         UserDefaults.standard.set(num, forKey: "todoNumber")
         
@@ -144,7 +115,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         /*****************不便益モード*********************/
-        // 不便益モード
         let switchBool = userDefaults.bool(forKey: "Inconvenience")
         
         if switchBool == true{
@@ -158,7 +128,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("todoCharArray : ",todoCharArray)
             print("todoCharArrayCount : ",todoLength,"\n")
             
-            /************************/
             //関数の書き方
             //https://rakusui.org/swift_function/
             //戻り値を配列にする方法
@@ -173,7 +142,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print(randomInt + 1,"文字目を削除します.")
                 return AfterDeleteCharacter
             }
-            /**************************/
             
             //何文字を消すか決定
             var randomIntCount = 0
@@ -417,150 +385,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.loadView()
         
     }
-    
-   
-    
-    
-    //出力ボタンをタップしたときの処理
-    /*
-     @IBAction func devButton(_ sender: Any) {
-     print("---現在の配列---")
-     print("todoList(件名)：",todoList)
-     print("DetailList(詳細)：",DetailList)
-     print("DeadlineList(期日)：",DeadlineList)
-     print("RegistrationDateList(登録日)：",RegistrationDateList)
-     print("CompleteFlagList(完了フラグ)：",CompleteFlagList)
-     print("CompleteFlagTrueDateList(完了日)：",CompleteFlagTrueDateList)
-     print("Top画面の表示回数：",OpenAppCounter)
-     
-     print("---完了済の配列---")
-     print("todoList(件名)：",todoList2)
-     print("DetailList(詳細)：",DetailList2)
-     print("DeadlineList(期日)：",DeadlineList2)
-     print("RegistrationDateList(登録日)：",RegistrationDateList2)
-     print("CompleteFlagList(完了フラグ)：",CompleteFlagList2)
-     print("CompleteFlagTrueDateList(完了日)：",CompleteFlagTrueDateList2)
-     }
-     */
-    
-    // 初期化ボタンを押した時の処理
-    /*
-     @IBAction func InitializationButton(_ sender: Any) {
-     print("初期化します.")
-     
-     // Top画面の表示回数をリセット
-     OpenAppCounter = 0
-     UserDefaults.standard.set(OpenAppCounter, forKey: "OpenAppCounter")
-     
-     todoList.removeAll()
-     DetailList.removeAll()
-     DeadlineList.removeAll()
-     RegistrationDateList.removeAll()
-     CompleteFlagList.removeAll()
-     CompleteFlagTrueDateList.removeAll()
-     
-     todoList2.removeAll()
-     DetailList2.removeAll()
-     DeadlineList2.removeAll()
-     RegistrationDateList2.removeAll()
-     CompleteFlagList2.removeAll()
-     CompleteFlagTrueDateList2.removeAll()
-     
-     // 削除した内容を保存
-     userDefaults.set(todoList, forKey: "todoList")
-     userDefaults.set(DetailList, forKey: "DetailList")
-     userDefaults.set(DeadlineList, forKey: "DeadlineList")
-     userDefaults.set(RegistrationDateList, forKey: "RegistrationDateList")
-     userDefaults.set(CompleteFlagList, forKey: "CompleteFlagList")
-     userDefaults.set(CompleteFlagTrueDateList, forKey: "CompleteFlagTrueDateList")
-     
-     // 削除した内容を保存
-     userDefaults.set(todoList2, forKey: "todoList2")
-     userDefaults.set(DetailList2, forKey: "DetailList2")
-     userDefaults.set(DeadlineList2, forKey: "DeadlineList2")
-     userDefaults.set(RegistrationDateList2, forKey: "RegistrationDateList2")
-     userDefaults.set(CompleteFlagList2, forKey: "CompleteFlagList2")
-     userDefaults.set(CompleteFlagTrueDateList2, forKey: "CompleteFlagTrueDateList2")
-     
-     self.loadView()
-     print("初期化完了.")
-     }
-     */
-    
-    
-    /************************/
-    //https://ios-docs.dev/filemanager/
-    //https://capibara1969.com/2836/#toc8
-    /*
-     @IBAction func complete(_ sender: Any) {
-     let OpenAppCounterString = String(OpenAppCounter)
-     print("tap to log")
-     appendText(string: "\n")
-     appendText(string: "\n【アプリを開いた回数】")
-     appendText(string: OpenAppCounterString + "\n\n")
-     appendText(string: "【未完了】")
-     
-     appendText(string: "--------期日--------")
-     for num in DeadlineList {
-     appendText(string: num)
-     }
-     appendText(string: "------登録日-------")
-     for num in RegistrationDateList {
-     appendText(string: num)
-     }
-     appendText(string: "--------完了日--------")
-     for num in CompleteFlagTrueDateList {
-     appendText(string: num)
-     }
-     
-     appendText(string: "\n\n【完了済】")
-     
-     appendText(string: "--------期日---------")
-     for num in DeadlineList2 {
-     appendText(string: num)
-     }
-     appendText(string: "--------登録日-------")
-     for num in RegistrationDateList2 {
-     appendText(string: num)
-     }
-     appendText(string: "-------完了日-----------")
-     for num in CompleteFlagTrueDateList2 {
-     appendText(string: num)
-     }
-     }
-     
-     func writingToFile(text: String) {
-     guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-     fatalError("フォルダURL取得エラー")
-     }
-     let fileURL = dirURL.appendingPathComponent("Logfile.txt")
-     print(fileURL)
-     do {
-     try text.write(to: fileURL, atomically: true, encoding: .utf8)
-     } catch {
-     print("failed to write: \(error)")
-     }
-     }
-     
-     func appendText(string: String) {
-     guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-     fatalError("フォルダURL取得エラー")
-     }
-     let fileURL = dirURL.appendingPathComponent("Logfile.txt")
-     print(fileURL)
-     do {
-     let fileHandle = try FileHandle(forWritingTo: fileURL)
-     let stringToWrite = "\n" + string
-     fileHandle.seekToEndOfFile()
-     fileHandle.write(stringToWrite.data(using: String.Encoding.utf8)!)
-     
-     } catch let error as NSError {
-     writingToFile(text: "新規ファイル\n\n")
-     print("Error: \(error)")
-     }
-     }
-     /*******************/
-     */
 }
 
 

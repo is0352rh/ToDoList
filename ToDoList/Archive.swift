@@ -138,12 +138,6 @@ class Archive: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                 self.dismiss(animated: true, completion: nil)
                 print("OKが選択されました.")
-                //print("sender.tag：", sender.tag)
-                
-                //CompleteFlagTrueDateList[sender.tag] = dateFormatter.string(from: now)
-                
-                // 完了フラグリストに状態を保存
-                //userDefaults.set(CompleteFlagList2, forKey: "CompleteFlagList2")
                 
                 // 未完了データ保存用の配列にコピー
                 todoList.append(todoList2[sender.tag])
