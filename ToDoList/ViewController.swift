@@ -43,16 +43,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var CompleteFlagTrueDateList2 = [String]()
     
     // Top画面を開いた回数を記録
-    var OpenAppCounter : Int = 0
+    //var OpenAppCounter : Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Top画面の表示をカウント
-        OpenAppCounter = UserDefaults.standard.integer(forKey: "OpenAppCounter")
-        OpenAppCounter = OpenAppCounter + 1
-        UserDefaults.standard.set(OpenAppCounter, forKey: "OpenAppCounter")
+        //OpenAppCounter = UserDefaults.standard.integer(forKey: "OpenAppCounter")
+        //OpenAppCounter = OpenAppCounter + 1
+        //UserDefaults.standard.set(OpenAppCounter, forKey: "OpenAppCounter")
         
         
         // データ読み込み
@@ -126,7 +126,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let todoTitle = todoList[indexPath.row]
         
         
-        /**************不便益モード*********************/
+        /*****************不便益モード*********************/
         // 不便益モード
         let switchBool = userDefaults.bool(forKey: "Inconvenience")
         
@@ -236,7 +236,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if CompleteFlagList[sender.tag] == true{
             //完了フラグTrue時のアラート設定
             //https://tech.playground.style/未分類/alert/
-            let alert = UIAlertController(title: "タスクを完了しますか？", message: "完了したタスクは\nリストに表示されなくなります.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "タスクを完了しますか？", message: "完了したタスクは\n完了リストに移行されます.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                 self.dismiss(animated: true, completion: nil)
                 print("OKが選択されました.")
@@ -245,7 +245,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 CompleteFlagTrueDateList[sender.tag] = dateFormatter.string(from: now)
                 
                 // 完了フラグリストに状態を保存
-                //CompleteFlagList[sender.tag] = sender.isOn
                 userDefaults.set(CompleteFlagList, forKey: "CompleteFlagList")
                 
                 // 完了データ保存用の配列にコピー
@@ -297,6 +296,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else if CompleteFlagList[sender.tag] == false {
             CompleteFlagTrueDateList[sender.tag] = "未完了"
         }
+        
         userDefaults.set(CompleteFlagTrueDateList, forKey: "CompleteFlagTrueDateList")
         
     }
@@ -304,33 +304,57 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // セルの削除機能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        // 削除する内容を表示
-        print("---削除対象---")
-        print("件名 : ",todoList[indexPath.row])
-        print("詳細 : ",DetailList[indexPath.row])
-        print("期日 : ",DeadlineList[indexPath.row])
-        print("登録日 : ",RegistrationDateList[indexPath.row])
-        print("完了フラグ : ",CompleteFlagList[indexPath.row])
-        print("完了日 : ",CompleteFlagTrueDateList[indexPath.row])
-        print("削除実行日 : ",Date())
+        //タスクスワイプし「delete」を押下した際の確認アラート設定
+        //https://tech.playground.style/未分類/alert/
+        let alert = UIAlertController(title: "タスクを削除しますか？", message: "削除したタスクは\n復元することができません.", preferredStyle: .alert)
         
-        if editingStyle == UITableViewCell.EditingStyle.delete {
-            todoList.remove(at: indexPath.row)
-            DetailList.remove(at: indexPath.row)
-            DeadlineList.remove(at: indexPath.row)
-            RegistrationDateList.remove(at: indexPath.row)
-            CompleteFlagList.remove(at: indexPath.row)
-            CompleteFlagTrueDateList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+            self.dismiss(animated: true, completion: nil)
+            // OK押下時の動作を記載
+            print("OKが選択されました.")
             
-            // 削除した内容を保存
-            userDefaults.set(todoList, forKey: "todoList")
-            userDefaults.set(DetailList, forKey: "DetailList")
-            userDefaults.set(DeadlineList, forKey: "DeadlineList")
-            userDefaults.set(RegistrationDateList, forKey: "RegistrationDateList")
-            userDefaults.set(CompleteFlagList, forKey: "CompleteFlagList")
-            userDefaults.set(CompleteFlagTrueDateList, forKey: "CompleteFlagTrueDateList")
+            // 実際に削除を行う場所
+            if editingStyle == UITableViewCell.EditingStyle.delete {
+                todoList.remove(at: indexPath.row)
+                DetailList.remove(at: indexPath.row)
+                DeadlineList.remove(at: indexPath.row)
+                RegistrationDateList.remove(at: indexPath.row)
+                CompleteFlagList.remove(at: indexPath.row)
+                CompleteFlagTrueDateList.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+                
+                // 削除した内容を保存
+                userDefaults.set(todoList, forKey: "todoList")
+                userDefaults.set(DetailList, forKey: "DetailList")
+                userDefaults.set(DeadlineList, forKey: "DeadlineList")
+                userDefaults.set(RegistrationDateList, forKey: "RegistrationDateList")
+                userDefaults.set(CompleteFlagList, forKey: "CompleteFlagList")
+                userDefaults.set(CompleteFlagTrueDateList, forKey: "CompleteFlagTrueDateList")
+                
+                // 削除する内容を表示
+                print("---削除対象---")
+                print("件名 : ",todoList[indexPath.row])
+                print("詳細 : ",DetailList[indexPath.row])
+                print("期日 : ",DeadlineList[indexPath.row])
+                print("登録日 : ",RegistrationDateList[indexPath.row])
+                print("完了フラグ : ",CompleteFlagList[indexPath.row])
+                print("完了日 : ",CompleteFlagTrueDateList[indexPath.row])
+                print("削除実行日 : ",Date())
+                
+                print("削除完了！！")
+            }
         }
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (acrion) in
+            self.dismiss(animated: true, completion: nil)
+            // キャンセル押下時の動作を記載
+            print("キャンセルが選択されました.")
+            }
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+ 
     }
     
     
@@ -351,6 +375,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let nextView = self.storyboard?.instantiateViewController(withIdentifier: "Next") as! ViewController2
         self.navigationController?.pushViewController(nextView, animated: true)
     }
+    
+    
+    @IBAction func devButton(_ sender: Any) {
+        print("---現在の配列---")
+        print("todoList(件名)：",todoList)
+        print("DetailList(詳細)：",DetailList)
+        print("DeadlineList(期日)：",DeadlineList)
+        print("RegistrationDateList(登録日)：",RegistrationDateList)
+        print("CompleteFlagList(完了フラグ)：",CompleteFlagList)
+        print("CompleteFlagTrueDateList(完了日)：",CompleteFlagTrueDateList)
+        //print("Top画面の表示回数：",OpenAppCounter)
+        
+    }
+    
+    @IBAction func archive(_ sender: Any) {
+        print("archiveボタン押下！！！")
+    }
+    
     
     //出力ボタンをタップしたときの処理
     /*
