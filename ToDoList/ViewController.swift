@@ -44,10 +44,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Top画面を開いた回数を記録
     //var OpenAppCounter : Int = 0
+
     
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+
+    }
     
+   /*
+    //遷移後，戻ってきた時にも実行
+    override func viewWillAppear(_ animated: Bool) {
+        // 画面が表示される前に実行したい処理を記述する
+        // 例えば、データの更新や、ビューの表示設定を行う
+    }
+    */
+    
+    //起動時１回目だけ実行
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         
         // Top画面の表示をカウント
         //OpenAppCounter = UserDefaults.standard.integer(forKey: "OpenAppCounter")
@@ -97,8 +114,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //戻るボタンの非表示設定
         //https://www.web-dev-qa-db-ja.com/ja/ios/swiftナビゲーションアイテムの戻るボタンを非表示にする方法/1050505720/
-        self.navigationItem.leftBarButtonItems = []
-        self.navigationItem.hidesBackButton = true
+        //self.navigationItem.leftBarButtonItems = []
+        //self.navigationItem.hidesBackButton = true
     }
     
     // +ボタンをタップしたときの動作
@@ -236,11 +253,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if CompleteFlagList[sender.tag] == true{
             //完了フラグTrue時のアラート設定
             //https://tech.playground.style/未分類/alert/
-            let alert = UIAlertController(title: "タスクを完了しますか？", message: "完了したタスクは\n完了リストに移行されます.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "タスクを完了しますか？", message: "完了したタスクは\nArchiveListに移行されます.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                 self.dismiss(animated: true, completion: nil)
                 print("OKが選択されました.")
-                print("sender.tag：", sender.tag)
                 
                 CompleteFlagTrueDateList[sender.tag] = dateFormatter.string(from: now)
                 
@@ -300,6 +316,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         userDefaults.set(CompleteFlagTrueDateList, forKey: "CompleteFlagTrueDateList")
         
     }
+    
+    
     
     // セルの削除機能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -385,13 +403,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("RegistrationDateList(登録日)：",RegistrationDateList)
         print("CompleteFlagList(完了フラグ)：",CompleteFlagList)
         print("CompleteFlagTrueDateList(完了日)：",CompleteFlagTrueDateList)
-        //print("Top画面の表示回数：",OpenAppCounter)
+       
+        print("---完了済の配列---")
+        print("todoList(件名)：",todoList2)
+        print("DetailList(詳細)：",DetailList2)
+        print("DeadlineList(期日)：",DeadlineList2)
+        print("RegistrationDateList(登録日)：",RegistrationDateList2)
+        print("CompleteFlagList(完了フラグ)：",CompleteFlagList2)
+        print("CompleteFlagTrueDateList(完了日)：",CompleteFlagTrueDateList2)
+        
+        // 画面をリロード
+        // https://tsukader.hatenablog.com/entry/2018/08/20/093414
+        self.loadView()
         
     }
     
-    @IBAction func archive(_ sender: Any) {
-        print("archiveボタン押下！！！")
-    }
+   
     
     
     //出力ボタンをタップしたときの処理

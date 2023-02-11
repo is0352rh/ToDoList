@@ -73,21 +73,19 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="ToDoList" id="sLR-Yh-58c">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="compose" id="vfj-nS-gan">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="addBtnAction:" destination="BYZ-38-t0r" id="uof-SY-iyW"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="organize" id="OPg-HL-H8W">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="archive:" destination="BYZ-38-t0r" id="ikI-08-FFi"/>
-                                    <segue destination="tol-WU-p1T" kind="show" id="jkQ-EB-Nc5"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="OPg-HL-H8W">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="archive:" destination="BYZ-38-t0r" id="ikI-08-FFi"/>
+                                <segue destination="tol-WU-p1T" kind="show" id="U6E-rP-bTn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="vfj-nS-gan">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addBtnAction:" destination="BYZ-38-t0r" id="uof-SY-iyW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -385,10 +383,10 @@
             </objects>
             <point key="canvasLocation" x="-23.188405797101453" y="67.633928571428569"/>
         </scene>
-        <!--View Controller-->
+        <!-- ArchiveList-->
         <scene sceneID="6nm-EX-41v">
             <objects>
-                <viewController storyboardIdentifier="archive" id="tol-WU-p1T" customClass="ViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="archive" id="tol-WU-p1T" customClass="Archive" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8yc-lC-eoV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -428,7 +426,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="5h1-3G-wTI"/>
+                    <navigationItem key="navigationItem" title=" ArchiveList" id="eRK-wg-x52"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="6aL-YE-3jF" id="Ig5-wa-IHf"/>

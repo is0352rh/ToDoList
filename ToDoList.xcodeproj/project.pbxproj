@@ -15,6 +15,7 @@
 		49621F0828A77E3E0082F931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49621F0728A77E3E0082F931 /* Assets.xcassets */; };
 		49621F0B28A77E3E0082F931 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49621F0928A77E3E0082F931 /* LaunchScreen.storyboard */; };
 		49A004F828B2970100815C40 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A004F728B2970100815C40 /* ViewController3.swift */; };
+		49BD28CC2997988000EAB76D /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BD28CB2997988000EAB76D /* Archive.swift */; };
 		49F07BD628B147E50004C487 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F07BD528B147E50004C487 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		49621F0A28A77E3E0082F931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49621F0C28A77E3E0082F931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49A004F728B2970100815C40 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
+		49BD28CB2997988000EAB76D /* Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		49F07BD528B147E50004C487 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				49621F0028A77E3A0082F931 /* SceneDelegate.swift */,
 				49621F0428A77E3A0082F931 /* Main.storyboard */,
 				49621F0228A77E3A0082F931 /* ViewController.swift */,
+				49BD28CB2997988000EAB76D /* Archive.swift */,
 				49F07BD528B147E50004C487 /* ViewController2.swift */,
 				49A004F728B2970100815C40 /* ViewController3.swift */,
 				4909AC8828D450EA00E59EE1 /* ViewController5.swift */,
@@ -152,6 +155,7 @@
 				49F07BD628B147E50004C487 /* ViewController2.swift in Sources */,
 				49621EFF28A77E3A0082F931 /* AppDelegate.swift in Sources */,
 				49621F0128A77E3A0082F931 /* SceneDelegate.swift in Sources */,
+				49BD28CC2997988000EAB76D /* Archive.swift in Sources */,
 				4909AC8928D450EA00E59EE1 /* ViewController5.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
